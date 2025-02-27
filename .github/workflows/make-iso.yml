@@ -3,10 +3,10 @@ name: Build Difuse Linux Installer ISO
 on:
   push:
     branches:
-      - main
+      - actions
   pull_request:
     branches:
-      - main
+      - actions
   workflow_dispatch:
 
 jobs:
