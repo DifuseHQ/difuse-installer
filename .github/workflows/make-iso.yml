@@ -20,7 +20,7 @@ jobs:
           pacman -Syu --noconfirm
           pacman -S --noconfirm arch-install-scripts awk dosfstools e2fsprogs \
             erofs-utils findutils grub gzip libarchive libisoburn mtools \
-            openssl pacman sed squashfs-tools edk2-ovmf qemu qemu-desktop git
+            openssl pacman sed squashfs-tools edk2-ovmf qemu qemu-desktop git archiso
 
       - name: Clone Repository
         run: git clone https://github.com/DifuseHQ/difuse-installer /difuse-installer
