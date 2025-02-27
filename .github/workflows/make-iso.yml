@@ -31,6 +31,12 @@ jobs:
           mkdir -p /build
           cp -r /difuse-installer/* /build/
 
+      - name: Validate and Clean Package List
+        run: |
+          # Remove packages that don't exist in the Arch Linux repo
+          valid_packages=$(comm -12 <(pacman -Ssq | sort) <(sort /build/packages.x86_64))
+          echo "$valid_packages" > /build/packages.x86_64
+
       - name: Build ISO
         run: |
           mkarchiso -v -w /build /build
@@ -49,4 +55,3 @@ jobs:
         with:
           name: difuse-linux-installer
           path: /build/difuse-linux-installer.iso
-
