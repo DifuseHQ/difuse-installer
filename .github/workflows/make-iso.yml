@@ -1,0 +1,51 @@
+name: Build Difuse Linux Installer ISO
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-iso:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+    steps:
+      - name: Install dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm arch-install-scripts awk dosfstools e2fsprogs \
+            erofs-utils findutils grub gzip libarchive libisoburn mtools \
+            openssl pacman sed squashfs-tools edk2-ovmf qemu qemu-desktop
+
+      - name: Clone Repository
+        run: git clone https://github.com/DifuseHQ/difuse-installer /difuse-installer
+
+      - name: Prepare Build Directory
+        run: |
+          mkdir -p /build
+          cp -r /difuse-installer/* /build/
+
+      - name: Build ISO
+        run: |
+          mkarchiso -v -w /build /build
+
+      - name: Find and Rename ISO
+        run: |
+          ISO_PATH=$(find /build -name 'archlinux-*-x86_64.iso' | head -n 1)
+          if [ -f "$ISO_PATH" ]; then
+            mv "$ISO_PATH" /build/difuse-linux-installer.iso
+          else
+            echo "ISO not found!" && exit 1
+          fi
+
+      - name: Upload ISO Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: difuse-linux-installer
+          path: /build/difuse-linux-installer.iso
+
