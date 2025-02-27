@@ -1,0 +1,9 @@
+[Unit]
+Description=Run a simple tauri app
+
+[Service]
+ExecStart=/usr/local/bin/run-sample-tauri-app
+
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+# remove from airrootfs
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = glibc
+
+[Action]
+Description = generating localization files....
+When = PostTransaction
+Depends = glibc
+Exec = /usr/bin/locale-gen
+

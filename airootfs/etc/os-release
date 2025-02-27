@@ -1,0 +1,11 @@
+NAME="Difuse Linux"
+PRETTY_NAME="Difuse Linux"
+ID=arch
+BUILD_ID=rolling
+ANSI_COLOR="38;2;23;147;209"
+HOME_URL="https://difuse.io/"
+DOCUMENTATION_URL="https://difuse-linux.difuse.io/"
+SUPPORT_URL="https://difuse-linux.difuse.io/support"
+BUG_REPORT_URL="https://github.com/DifuseHQ/difuse-installer"
+PRIVACY_POLICY_URL="https://difuse-linux.difuse.io/docs/privacy-policy/"
+LOGO=archlinux-logo

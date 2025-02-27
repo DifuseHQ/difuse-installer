@@ -1,0 +1,7 @@
+root:x:0:root
+adm:x:4:difuse
+wheel:x:10:difuse
+uucp:x:14:difuse
+difuse:x:1000:
+
+
