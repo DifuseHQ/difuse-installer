@@ -4,6 +4,8 @@ xorg-clock
 xorg-twm
 xdg-utils
 awk
+nodejs
+npm
 dosfstools
 e2fsprogs
 erofs-utils

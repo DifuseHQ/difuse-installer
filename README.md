@@ -6,21 +6,21 @@
 
 - The following packages need to be installed to be able to create an image with the included scripts:
 
-* arch-install-scripts
-* awk
-* dosfstools
-* e2fsprogs
-* erofs-utils (optional)
-* findutils
-* grub
-* gzip
-* libarchive
-* libisoburn
-* mtools
-* openssl
-* pacman
-* sed
-* squashfs-tools
+    - arch-install-scripts
+    - awk
+    - dosfstools
+    - e2fsprogs
+    - erofs-utils (optional)
+    - findutils
+    - grub
+    - gzip
+    - libarchive
+    - libisoburn
+    - mtools
+    - openssl
+    - pacman
+    - sed
+    - squashfs-tools
 
 
 - Run this with:
@@ -48,20 +48,20 @@ sudo pacman -S arch-install-scripts \
 - For running the images in a virtualized test environment the following packages are required:
 
 ```bash
-sudo pacman -S edk2-ovmf qemu qemu-desktop
+    sudo pacman -S edk2-ovmf qemu qemu-desktop
 ````
 
 - Clone the repo
 
 ```bash
-git clone https://github.com/DifuseHQ/difuse-installer 
+    git clone https://github.com/DifuseHQ/difuse-installer 
 
 ```
 
-- Run this command to build the iso:
+- Run this command as root to build the iso:
 ```bash
 
- # mkarchiso -v -w /path/to/build/folder difuse-installer
+    sudo mkarchiso -v -w /path/to/build/folder difuse-installer
 
 ```
 > NOTE
