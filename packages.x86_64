@@ -1,8 +1,4 @@
 arch-install-scripts
-xorg
-xorg-clock
-xorg-twm
-xdg-utils
 awk
 nodejs
 npm
@@ -58,6 +54,7 @@ fatresize
 file
 foot-terminfo
 fsarchiver
+fuse
 gpart
 gpm
 gptfdisk
@@ -148,6 +145,7 @@ usb_modeswitch
 usbmuxd
 usbutils
 vim
+neovim
 virtualbox-guest-utils-nox
 vpnc
 wget
@@ -157,4 +155,8 @@ wpa_supplicant
 wvdial
 xfsprogs
 xl2tpd
+xorg-xinit
+xorg
+xorg-twm
+xdg-utils
 zsh

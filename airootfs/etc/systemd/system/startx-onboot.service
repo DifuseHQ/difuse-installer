@@ -1,0 +1,10 @@
+
+[Unit]
+Description=Script which starts X serve r
+
+[Service]
+ExecStart=startx
+
+
+[Install]
+WantedBy=multi-user.target

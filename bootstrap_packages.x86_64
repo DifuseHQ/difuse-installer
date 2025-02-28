@@ -1,2 +1,7 @@
 arch-install-scripts
 base
+base-devel
+neovim
+xorg
+fuse
+
