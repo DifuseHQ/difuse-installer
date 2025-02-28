@@ -40,8 +40,7 @@ automated_script() {
 }
 
 if [[ $(tty) == "/dev/tty1" ]]; then
-	chmod +x /root/start.sh
+    chmod +x /root/start.sh
     automated_script
     startx
-
 fi
