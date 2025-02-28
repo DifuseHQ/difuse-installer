@@ -43,7 +43,7 @@ jobs:
 
       - name: Find and Rename ISO
         run: |
-          ISO_PATH=$(find /build -name 'archlinux-*-x86_64.iso' | head -n 1)
+          ISO_PATH=$(find /build /out -name 'archlinux-*-x86_64.iso' | head -n 1)
           if [ -f "$ISO_PATH" ]; then
             mv "$ISO_PATH" /build/difuse-linux-installer.iso
           else
