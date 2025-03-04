@@ -1,5 +1,16 @@
 /* @refresh reload */
-import { render } from "solid-js/web";
-import App from "./App";
+import { For, render } from "solid-js/web";
+import { Route, Router } from "@solidjs/router";
+import "./index.css";
+import Layout, { TabList } from "./Layout";
 
-render(() => <App />, document.getElementById("root") as HTMLElement);
+render(
+  () => (
+    <Router root={Layout}>
+      <For each={TabList}>
+        {(list) => <Route path={list.path} component={list.component} />}
+      </For>
+    </Router>
+  ),
+  document.getElementById("root") as HTMLElement,
+);
