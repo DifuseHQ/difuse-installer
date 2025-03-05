@@ -1,4 +1,4 @@
-import { createEffect, createSignal, For, Show } from "solid-js";
+import { For, Show } from "solid-js";
 import { invoke } from "@tauri-apps/api/core";
 import { NetworkInterface } from "./types";
 import { createResource } from "solid-js";
@@ -6,27 +6,15 @@ import { createResource } from "solid-js";
 const getNetworkInterfaces = async (): Promise<NetworkInterface[]> =>
   await invoke("get_network_interfaces");
 
+const pingServer = async (): Promise<boolean> => await invoke("ping_difuse_io");
+
 function NetConfig() {
-  const [networkInterfaces, setNetworkInterfaces] =
-    createSignal<NetworkInterface[]>();
-  const [isConnected, setIsConnected] = createSignal(false);
-  const [interfaces] = createResource(networkInterfaces, getNetworkInterfaces);
-
-  async function pingServer() {
-    const result: boolean = await invoke("ping_difuse_io");
-    setIsConnected(result);
-  }
-
-  createEffect(async () => {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-
-    setNetworkInterfaces(await invoke("get_network_interfaces"));
-    setIsConnected(await invoke("ping_difuse_io"));
-  });
+  const [networkInterfaces] = createResource(getNetworkInterfaces);
+  const [checkConnection] = createResource(pingServer);
 
   return (
     <>
-      <Show when={interfaces.loading}>Checking network config</Show>
+      <Show when={checkConnection.loading}>Checking network config......</Show>
       <div class="flex flex-col items-center justify-center mt-8">
         <div class="text-2xl font-bold">
           <ul>
@@ -43,7 +31,7 @@ function NetConfig() {
         </button>
         <div class="mt-5 flex flex-col gap-3 items-center">
           <Show
-            when={isConnected()}
+            when={checkConnection()}
             fallback={
               <span class="flex items-center justify-center gap-3">
                 Not Connected

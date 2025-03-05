@@ -8,3 +8,11 @@ export interface NetworkInterface {
   mac?: MacAddress;
   ips: IpAddress[];
 }
+
+export interface DiskData {
+  name: string;
+  file_system: string;
+  available_space: number;
+  total_space: number;
+  mount_point: string;
+}
