@@ -1,5 +1,8 @@
 type MacAddress = string;
+
 type IpAddress = string;
+
+type DiskImage = string;
 
 export interface NetworkInterface {
   name: string;
@@ -15,4 +18,10 @@ export interface DiskData {
   available_space: number;
   total_space: number;
   mount_point: string;
+}
+export interface AppState {
+  selectedDisk: DiskData | null;
+  selectedNetworkInteface: NetworkInterface | null;
+  selectedImage: DiskImage | null;
+  isLicenceVerified: boolean;
 }

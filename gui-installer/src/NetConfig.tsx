@@ -1,4 +1,4 @@
-import { For, Show } from "solid-js";
+import { createEffect, createSignal, For, Show } from "solid-js";
 import { invoke } from "@tauri-apps/api/core";
 import { NetworkInterface } from "./types";
 import { createResource } from "solid-js";
@@ -6,11 +6,22 @@ import { createResource } from "solid-js";
 const getNetworkInterfaces = async (): Promise<NetworkInterface[]> =>
   await invoke("get_network_interfaces");
 
+const setNetworkInterface = async (
+  netInterface: NetworkInterface,
+): Promise<NetworkInterface> =>
+  await invoke("set_network_interface", { interface: netInterface });
+
 const pingServer = async (): Promise<boolean> => await invoke("ping_difuse_io");
 
 function NetConfig() {
   const [networkInterfaces] = createResource(getNetworkInterfaces);
+  const [selectedNetworkInterface, setSelectNetworkInterface] =
+    createSignal<NetworkInterface>();
   const [checkConnection] = createResource(pingServer);
+  const [networkInterface] = createResource(
+    selectedNetworkInterface,
+    setNetworkInterface,
+  );
 
   return (
     <>

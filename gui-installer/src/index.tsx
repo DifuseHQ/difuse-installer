@@ -2,12 +2,12 @@
 import { For, render } from "solid-js/web";
 import { Route, Router } from "@solidjs/router";
 import "./index.css";
-import Layout, { TabList } from "./Layout";
+import Layout, { getTabList } from "./Layout";
 
 render(
   () => (
     <Router root={Layout}>
-      <For each={TabList}>
+      <For each={getTabList()}>
         {(list) => <Route path={list.path} component={list.component} />}
       </For>
     </Router>

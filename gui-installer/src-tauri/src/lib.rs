@@ -1,7 +1,9 @@
 pub mod screens;
 pub mod utils;
 
-use std::path::Path;
+#[cfg(test)]
+pub mod tests;
+
 use std::process::{Command, Stdio};
 
 use pnet::datalink::{self, NetworkInterface};
@@ -11,10 +13,14 @@ use sysinfo::Disks;
 use tauri::Manager;
 use tauri::State;
 
-#[derive(Serialize)]
+#[derive(Serialize, Default)]
 struct AppData {
     interfaces: Vec<NetworkInterface>,
+    selected_interface: Option<NetworkInterface>,
+    selected_disk: Option<DiskData>,
     disks: Vec<DiskData>,
+    license_key: String,
+    is_key_verified: bool,
 }
 
 #[derive(Serialize, Clone)]
@@ -72,10 +78,7 @@ fn ping_difuse_io() -> bool {
 pub fn run() {
     tauri::Builder::default()
         .setup(|app| {
-            app.manage(Mutex::new(AppData {
-                interfaces: Vec::new(),
-                disks: Vec::new(),
-            }));
+            app.manage(Mutex::new(AppData::default()));
             Ok(())
         })
         .plugin(tauri_plugin_log::Builder::new().build())
